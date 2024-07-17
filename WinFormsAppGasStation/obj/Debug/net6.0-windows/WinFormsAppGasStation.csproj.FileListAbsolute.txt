@@ -14,3 +14,4 @@ C:\Users\user\Desktop\Software Engineering\C# Windows Forms\Project\WinFormsAppG
 C:\Users\user\Desktop\Software Engineering\C# Windows Forms\Project\WinFormsAppGasStation\WinFormsAppGasStation\obj\Debug\net6.0-windows\WinFormsAppGasStation.pdb
 C:\Users\user\Desktop\Software Engineering\C# Windows Forms\Project\WinFormsAppGasStation\WinFormsAppGasStation\obj\Debug\net6.0-windows\WinFormsAppGasStation.genruntimeconfig.cache
 C:\Users\user\Desktop\Software Engineering\C# Windows Forms\Project\WinFormsAppGasStation\WinFormsAppGasStation\obj\Debug\net6.0-windows\ref\WinFormsAppGasStation.dll
+C:\Users\user\Desktop\Software Engineering\C# Windows Forms\Project\WinFormsAppGasStation\WinFormsAppGasStation\obj\Debug\net6.0-windows\WinFormsAppGasStation.sourcelink.json
