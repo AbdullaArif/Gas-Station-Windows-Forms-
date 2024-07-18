@@ -103,6 +103,9 @@ namespace WinFormsAppGasStation
             numericUpDown4.ReadOnly = true;
             numericUpDown5.ReadOnly = true;
 
+            tabPage1.Text = "Tank Information";
+            tabPage2.Text = "Price Information";
+            tabPage3.Text = "Sell";
 
             //Methods
             txtTankRead();
@@ -115,12 +118,61 @@ namespace WinFormsAppGasStation
 
         private void button2_Click(object sender, EventArgs e)
         {
-         
+            try
+            {
+                priceGasoline95 += (priceGasoline95 * Convert.ToDouble(textBox6.Text) / 100);
+                priceInformation[0] = Convert.ToString(priceGasoline95);
+            }
+            catch (Exception)
+            {
+                textBox6.Text = "Error!";
+            }
+            try
+            {
+                priceGasoline97 += (priceGasoline97 * Convert.ToDouble(textBox7.Text) / 100);
+                priceInformation[1] = Convert.ToString(priceGasoline97);
+            }
+            catch (Exception)
+            {
+                textBox7.Text = "Error!";
+            }
+            try
+            {
+                priceDiesel += (priceDiesel * Convert.ToDouble(textBox8.Text) / 100);
+                priceInformation[2] = Convert.ToString(priceDiesel);
+            }
+            catch (Exception)
+            {
+                textBox8.Text = "Error!";
+            }
+            try
+            {
+                priceEuroDiesel += (priceEuroDiesel * Convert.ToDouble(textBox9.Text) / 100);
+                priceInformation[3] = Convert.ToString(priceEuroDiesel);
+            }
+            catch (Exception)
+            {
+                textBox9.Text = "Error!";
+            }
+            try
+            {
+                priceLpg += (priceLpg * Convert.ToDouble(textBox10.Text) / 100);
+                priceInformation[4] = Convert.ToString(priceLpg);
+            }
+            catch (Exception)
+            {
+                textBox10.Text = "Error!";
+            }
+            System.IO.File.WriteAllLines(Application.StartupPath + "\\price.txt", priceInformation);
+            txtPriceRead();
+            txtPriceRead();
+            progressBarUpdate();
+            numericUpDownValue();
         }
 
         private void button1_Click(object sender, EventArgs e)
         {
-           
+
             try
             {
                 addGasoline95 = Convert.ToDouble(textBox1.Text);
@@ -139,7 +191,6 @@ namespace WinFormsAppGasStation
             catch (Exception ex)
             {
                 textBox1.Text = "Error!!";
-                // Hata günlü?ü veya hata mesaj? için ex kullan?labilir.
             }
 
             try
@@ -160,11 +211,12 @@ namespace WinFormsAppGasStation
             catch (Exception ex)
             {
                 textBox2.Text = "Error!!";
-                // Hata günlü?ü veya hata mesaj? için ex kullan?labilir.
+
             }
 
             try
-            {addDiesel = Convert.ToDouble(textBox3.Text);
+            {
+                addDiesel = Convert.ToDouble(textBox3.Text);
                 if (double.TryParse(textBox3.Text, out addDiesel))
                 {
                     if (addDiesel <= 0 || tankDiesel + addDiesel > 1000)
@@ -180,11 +232,12 @@ namespace WinFormsAppGasStation
             catch (Exception ex)
             {
                 textBox3.Text = "Error!!";
-                // Hata günlü?ü veya hata mesaj? için ex kullan?labilir.
+
             }
 
             try
-            {addEuroDiesel = Convert.ToDouble(textBox4.Text);
+            {
+                addEuroDiesel = Convert.ToDouble(textBox4.Text);
                 if (double.TryParse(textBox4.Text, out addEuroDiesel))
                 {
                     if (addEuroDiesel <= 0 || tankEuroDiesel + addEuroDiesel > 1000)
@@ -200,11 +253,12 @@ namespace WinFormsAppGasStation
             catch (Exception ex)
             {
                 textBox4.Text = "Error!!";
-                // Hata günlü?ü veya hata mesaj? için ex kullan?labilir.
+
             }
 
             try
-            {addLpg = Convert.ToDouble(textBox5.Text);
+            {
+                addLpg = Convert.ToDouble(textBox5.Text);
                 if (double.TryParse(textBox5.Text, out addLpg))
                 {
                     if (addLpg <= 0 || tankLpg + addLpg > 1000)
@@ -220,86 +274,119 @@ namespace WinFormsAppGasStation
             catch (Exception ex)
             {
                 textBox5.Text = "Error!!";
-                // Hata günlü?ü veya hata mesaj? için ex kullan?labilir.
-            }
-            /*
-             * 
-             *  try
-            {
-                if (double.TryParse(textBox1.Text, out addGasoline95))
-                {
-                    if (addGasoline95 <= 0 || tankGasoline95 + addGasoline95 > 1000)
-                        textBox1.Text = "Error!!";
-                    else
-                        tankInformation[0] = (tankGasoline95 + addGasoline95).ToString();
-                }
-                else
-                {
-                    textBox1.Text = "Error!!";
-                }
-            }
-            catch (Exception)
-            {
-                textBox1.Text = "Error!!";
-                throw;
-            }
-          try
-          {
-              addGasoline95 = Convert.ToDouble(textBox1.Text);
-              if (addGasoline95 <= 0 || tankGasoline95 + addGasoline95 > 1000) textBox1.Text = "Error!!";
-              else tankInformation[0] = Convert.ToString(tankGasoline95 + addGasoline95);
-          }
-          catch (Exception)
-          {
-              textBox1.Text = "Error!!";
-              throw;
-          }
 
-          try
-          {
-              addGasoline97 = Convert.ToDouble(textBox2.Text);
-              if (addGasoline97 <= 0 || tankGasoline97 + addGasoline97 > 1000) textBox2.Text = "Error!!";
-              else tankInformation[1] = Convert.ToString(tankGasoline97 + addGasoline97);
-          }
-          catch (Exception)
-          {
-              textBox2.Text = "Error!!";
-              throw;
-          }
-          try
-          {
-              addDiesel = Convert.ToDouble(textBox3.Text);
-              if (addDiesel <= 0 || tankDiesel + addDiesel > 1000) textBox3.Text = "Error!!";
-              else tankInformation[2] = Convert.ToString(tankDiesel + addDiesel);
-          }
-          catch (Exception)
-          {
-              textBox3.Text = "Error!!";
-              throw;
-          }
-          try
-          {
-              addEuroDiesel = Convert.ToDouble(textBox4.Text);
-              if (addEuroDiesel <= 0 || tankEuroDiesel + addEuroDiesel > 1000) textBox4.Text = "Error!!";
-              else tankInformation[3] = Convert.ToString(tankEuroDiesel + addEuroDiesel);
-          }
-          catch (Exception)
-          {
-              textBox4.Text = "Error!!";
-              throw;
-          }
-          try
-          {
-              addLpg = Convert.ToDouble(textBox5.Text);
-              if (addLpg <= 0 || tankLpg + addLpg > 1000) textBox5.Text = "Error!!";
-              else tankInformation[4] = Convert.ToString(tankLpg + addLpg);
-          }
-          catch (Exception)
-          {
-              textBox5.Text = "Error!!";
-              throw;
-          }
-          */
+            }
+            System.IO.File.WriteAllLines(Application.StartupPath + "\\tank.txt", tankInformation);
+            txtTankRead();
+            txtTankRead();
+            progressBarUpdate();
+            numericUpDownValue();
+
+        }
+
+        private void comboBox1_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (comboBox1.Text == "Gasoline (95)")
+            {
+                numericUpDown1.Enabled = true;
+                numericUpDown2.Enabled = false;
+                numericUpDown3.Enabled = false;
+                numericUpDown4.Enabled = false;
+                numericUpDown5.Enabled = false;
+            }
+            else if (comboBox1.Text == "Gasoline (97)")
+            {
+                numericUpDown1.Enabled = false;
+                numericUpDown2.Enabled = true;
+                numericUpDown3.Enabled = false;
+                numericUpDown4.Enabled = false;
+                numericUpDown5.Enabled = false;
+            }
+            else if (comboBox1.Text == "Diesel")
+            {
+                numericUpDown1.Enabled = false;
+                numericUpDown2.Enabled = false;
+                numericUpDown3.Enabled = true;
+                numericUpDown4.Enabled = false;
+                numericUpDown5.Enabled = false;
+            }
+            else if (comboBox1.Text == "Euro Diesel")
+            {
+                numericUpDown1.Enabled = false;
+                numericUpDown2.Enabled = false;
+                numericUpDown3.Enabled = false;
+                numericUpDown4.Enabled = true;
+                numericUpDown5.Enabled = false;
+            }
+            else if (comboBox1.Text == "LPG")
+            {
+                numericUpDown1.Enabled = false;
+                numericUpDown2.Enabled = false;
+                numericUpDown3.Enabled = false;
+                numericUpDown4.Enabled = false;
+                numericUpDown5.Enabled = true;
+            }
+            numericUpDown1.Value = 0;
+            numericUpDown2.Value = 0;
+            numericUpDown3.Value = 0;
+            numericUpDown4.Value = 0;
+            numericUpDown5.Value = 0;
+            label29.Text = "___________";
+
+        }
+
+        private void button3_Click(object sender, EventArgs e)
+        {
+            sellGasoline95= double.Parse(numericUpDown1.Value.ToString());
+            sellGasoline97= double.Parse(numericUpDown2.Value.ToString());
+            sellDiesel = double.Parse(numericUpDown3.Value.ToString());
+            sellEuroDiesel= double.Parse(numericUpDown4.Value.ToString());
+            sellLpg = double.Parse(numericUpDown5.Value.ToString());
+
+            if (numericUpDown1.Enabled == true)
+            {
+                tankGasoline95 -= sellGasoline95;
+                label29.Text=Convert.ToString(sellGasoline95*priceGasoline95);
+            }
+            else if (numericUpDown2.Enabled == true)
+            {
+                tankGasoline97 -= sellGasoline97;
+                label29.Text = Convert.ToString(sellGasoline97 * priceGasoline97);
+            }
+            else if (numericUpDown3.Enabled == true)
+            {
+                tankDiesel -= sellDiesel;
+                label29.Text = Convert.ToString(sellDiesel * priceDiesel);
+            }
+            else if (numericUpDown4.Enabled == true)
+            {
+                tankEuroDiesel -= sellEuroDiesel;
+                label29.Text = Convert.ToString(sellEuroDiesel * priceEuroDiesel);
+            }
+            else if (numericUpDown4.Enabled == true)
+            {
+                tankLpg -= sellLpg;
+                label29.Text = Convert.ToString(sellLpg * priceLpg);
+            }
+
+            tankInformation[0] = Convert.ToString(tankGasoline95);
+            tankInformation[1] = Convert.ToString(tankGasoline95);
+            tankInformation[2]=Convert.ToString(tankDiesel);
+            tankInformation[3]=Convert.ToString(tankEuroDiesel);
+            tankInformation[4] = Convert.ToString(tankLpg);
+
+            System.IO.File.WriteAllLines(Application.StartupPath + "\\tank.txt",tankInformation);
+            txtTankRead();
+            txtTankWrite();
+            progressBarUpdate();
+            numericUpDownValue();
+
+            numericUpDown1.Value = 0;
+            numericUpDown2.Value = 0;
+            numericUpDown3.Value = 0;
+            numericUpDown4.Value = 0;
+            numericUpDown5.Value = 0;
+
         }
     }
 }

@@ -14,7 +14,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("WinFormsAppGasStation")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+3983664b2815a26bcb5eef4cb28fdc27eeb13936")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+39ca1d573d98d7d71868eff921738932b223870e")]
 [assembly: System.Reflection.AssemblyProductAttribute("WinFormsAppGasStation")]
 [assembly: System.Reflection.AssemblyTitleAttribute("WinFormsAppGasStation")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

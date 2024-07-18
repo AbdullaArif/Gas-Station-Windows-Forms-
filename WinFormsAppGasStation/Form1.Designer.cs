@@ -106,6 +106,7 @@
             tabControl1.SelectedIndex = 0;
             tabControl1.Size = new Size(798, 452);
             tabControl1.TabIndex = 0;
+            tabControl1.Tag = "";
             // 
             // tabPage1
             // 
@@ -512,6 +513,7 @@
             button3.TabIndex = 14;
             button3.Text = "Sell";
             button3.UseVisualStyleBackColor = true;
+            button3.Click += button3_Click;
             // 
             // numericUpDown5
             // 
@@ -555,6 +557,7 @@
             comboBox1.Name = "comboBox1";
             comboBox1.Size = new Size(121, 23);
             comboBox1.TabIndex = 8;
+            comboBox1.SelectedIndexChanged += comboBox1_SelectedIndexChanged;
             // 
             // label29
             // 
